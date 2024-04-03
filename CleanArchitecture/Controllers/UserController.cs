@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.Application.Interfaces;
+using CleanArchitecture.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArchitecture.Controllers
@@ -21,19 +22,16 @@ namespace CleanArchitecture.Controllers
             return Ok("Registration done");
         }
         [HttpPost("UserAsync")]
-        public async Task<IActionResult>RegisterUserAsync(string name, string email)
+        public async Task<IActionResult> RegisterUserAsync([FromBody] UserRegistrationRequest request)
         {
-            if(string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email))
-            {
-                return BadRequest("Name and Email are mandatory");
-            }
-            var isExisting = await _userRegistrationService.EmailExistsAsync(email);
+           
+            var isExisting = await _userRegistrationService.EmailExistsAsync(request.Email);
 
             if (isExisting)
             {
                 return BadRequest("Email is already in use");
             }
-            var success = await _userRegistrationService.RegisterUserAsync(name, email);
+            var success = await _userRegistrationService.RegisterUserAsync(request.Name, request.Email);
             if (!success)
             {
                 return BadRequest("Registration failed");
