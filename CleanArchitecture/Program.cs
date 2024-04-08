@@ -6,7 +6,7 @@ using CleanArchitecture.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 public class Program
 {
-    public static void Main(string[] args)
+    public static void main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 

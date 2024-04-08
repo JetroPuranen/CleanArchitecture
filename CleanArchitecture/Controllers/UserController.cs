@@ -39,5 +39,13 @@ namespace CleanArchitecture.Controllers
 
             return Created();
         }
+        [HttpGet("{email}")]
+        public async Task<IActionResult> GetUserByEmail(string email)
+        {
+            var user = await _userRegistrationService.GetUserByEmailAsync(email);
+            if (user == null)
+                return NotFound(); // Voit palauttaa myös BadRequest tai muun vastaavan tilanteesta riippuen
+            return Ok(user);
+        }
     }
 }

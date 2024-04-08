@@ -12,5 +12,10 @@ namespace CleanArchitecture.Infrastructure.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         public DbSet<User> Users { get; set; }
+
+        internal Task<User> GetUserByEmailAsync(string email)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -14,5 +14,7 @@ namespace CleanArchitecture.Domain.Interfaces
         Task<bool> EmailExistsAsync(string email);
 
         Task Addsync(User user);
+
+        Task<User> GetUserByEmailAsync(string email);
     }
 }

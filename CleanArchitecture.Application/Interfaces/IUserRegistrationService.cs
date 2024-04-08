@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CleanArchitecture.Application.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,5 +15,6 @@ namespace CleanArchitecture.Application.Interfaces
 
         Task<bool> EmailExistsAsync(string email);
         Task<bool> RegisterUserAsync(string name, string email);
+        Task<UserDTO> GetUserByEmailAsync(string email);
     }
 }

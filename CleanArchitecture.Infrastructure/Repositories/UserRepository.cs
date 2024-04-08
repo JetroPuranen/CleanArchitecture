@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using CleanArchitecture.Application.DTOs;
+using CleanArchitecture.Application.Mappers;
 
 namespace CleanArchitecture.Infrastructure.Repositories
 {
@@ -41,6 +43,10 @@ namespace CleanArchitecture.Infrastructure.Repositories
         public async Task<bool>EmailExistsAsync(string email)
         {
             return await _context.Users.AnyAsync(u => u.Email == email);
+        }
+        public async Task<User> GetUserByEmailAsync(string email)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
         }
     }
 }

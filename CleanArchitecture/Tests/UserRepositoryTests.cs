@@ -16,16 +16,16 @@ namespace CleanArchitecture.Tests
                 .Options;
         }
         [Fact]
-        public async Task AddAsync_ShouldAddUser_WhenUserIsValid()
+        public async Task Addsync_ShouldAddUser_WhenUserIsValid()
         {
             using (var context = new ApplicationDbContext(_options))
             {
                 var userRepository = new UserRepository(context);
-                var user = new User { Name = "Test User", Email = "Test@email.com" };
+                var user = new User { Name = "Test user", Email = "Test@email.com" };
 
                 await userRepository.Addsync(user);
 
-                var userInDb = await context.Users.FirstOrDefaultAsync(u => u.Email == "test@example.com");
+                var userInDb = await context.Users.FirstOrDefaultAsync(u => u.Email == "Test@email.com");
                 Assert.NotNull(userInDb);
                 Assert.Equal("Test user", userInDb.Name);
 
